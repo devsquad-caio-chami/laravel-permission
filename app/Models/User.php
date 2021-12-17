@@ -62,4 +62,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function scopeAllRolesFromAllTeams($query)
+    {
+        return $query
+            ->selectRaw('tenants.name, group_concat(roles.name) as roles')
+            ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('tenants', 'team_id', '=', 'tenants.id')
+            ->join('roles', 'role_id', '=', 'roles.id')
+            ->where('model_id', '=', $this->id)
+            ->groupBy('model_has_roles.team_id');
+    }
 }

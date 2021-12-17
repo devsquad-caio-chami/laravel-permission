@@ -1,6 +1,7 @@
-<div>
-    <x-icon class="w-2 h-2 cursor-pointer" wire:click="$set('confirmingDelete', true)" x-show="show" name="trash" />
-    <x-jet-confirmation-modal wire:key="{{ $role->id }}" wire:model="confirmingDelete">
+<div class="text-gray-800">
+    <x-icon class="w-4 h-4 cursor-pointer text-white" wire:click="$set('confirmingDelete', true)" x-show="show"
+        name="trash" />
+    <x-jet-confirmation-modal wire:model="confirmingDelete">
         <x-slot name="title">
             {{ __('Delete Role') }}
         </x-slot>

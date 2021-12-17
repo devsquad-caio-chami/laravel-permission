@@ -9,11 +9,12 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <x-users-menu/>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class="md:px-32 py-8 w-full">
+                            <div class="w-full">
                                 <div class="shadow overflow-hidden rounded border-b border-gray-200">
                                     <table class="min-w-full bg-white">
                                         <thead class="bg-gray-800 text-white">
