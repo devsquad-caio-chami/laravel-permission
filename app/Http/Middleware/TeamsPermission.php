@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Tenant;
+use Spatie\Permission\PermissionRegistrar;
 
 class TeamsPermission
 {
@@ -10,10 +11,9 @@ class TeamsPermission
     {
         $currentTenant = Tenant::current();
 
-        if ($currentTenant) {
-            app(\Spatie\Permission\PermissionRegistrar::class)->setPermissionsTeamId($currentTenant->id);
+        if(!empty(auth()->user())){
+            app(PermissionRegistrar::class)->setPermissionsTeamId($currentTenant->id);
         }
-
         return $next($request);
     }
 }
