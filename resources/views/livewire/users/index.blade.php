@@ -65,12 +65,9 @@
                                                     </div>
                                                 @endforeach
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex divide-x-2">
-                                                    <a href="#"
-                                                       class="text-indigo-600 hover:text-indigo-900 p-2">Edit</a>
-                                                    <a href="#"
-                                                       class="text-indigo-600 hover:text-indigo-900 p-2">Remove</a>
+                                                    <livewire:users.data-table.change-roles :roles="implode(',', $user->getRoleNames()->toArray()) ?? ''" :userId="$user->id" wire:key="{{ $user->id }}" />
                                                 </div>
                                             </td>
                                         </tr>

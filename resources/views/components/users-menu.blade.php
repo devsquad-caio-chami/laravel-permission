@@ -52,7 +52,7 @@
             </a>
 
             <a
-                href="#"
+                href="{{ route('brands.index') }}"
                 @class([
                     'group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm',
                     'border-indigo-500 text-indigo-600' => Route::is('brands.index'),
