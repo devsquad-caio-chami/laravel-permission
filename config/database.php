@@ -40,7 +40,7 @@ return [
             'database' => null,
             'host' => '127.0.0.1',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
         ],
 
         'landlord' => [
@@ -48,7 +48,7 @@ return [
             'database' => 'landlord',
             'host' => '127.0.0.1',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
         ],
 
         'sqlite' => [
