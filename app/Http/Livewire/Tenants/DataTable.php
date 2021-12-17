@@ -11,7 +11,7 @@ class DataTable extends LivewireDatatable
 {
     public $hideable = 'select';
 
-    public $exportable = true;
+    public $exportable = false;
 
     protected $listeners = [
         'tenantAdded' => '$refresh',
