@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\SeedTenantDatabase;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -23,22 +24,13 @@ class Tenant extends ModelsTenant
 
     public static function booted()
     {
-        static::created(fn (Tenant $model) => $model->createDatabase());
+        static::created(fn (Tenant $model) => SeedTenantDatabase::dispatch($model));
         static::deleted(fn (Tenant $model) => $model->dropDatabase());
-    }
-
-    public function createDatabase()
-    {
-        DB::connection('tenant')->statement("CREATE DATABASE {$this->getDatabaseName()}");
-
-        Artisan::call('tenants:artisan', [
-            'artisanCommand' => 'migrate --database=tenant --seed',
-            '--tenant' => $this->id,
-        ]);
     }
 
     public function dropDatabase()
     {
-        DB::connection('tenant')->statement("DROP DATABASE {$this->getDatabaseName()}");
+        DB::connection('tenant')
+            ->statement("DROP DATABASE {$this->getDatabaseName()}");
     }
 }
