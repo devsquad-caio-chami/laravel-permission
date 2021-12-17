@@ -1,13 +1,12 @@
-<div class="text-gray-800">
-    <x-icon class="w-4 h-4 cursor-pointer text-white" wire:click="$set('confirmingDelete', true)" x-show="show"
-        name="trash" />
-    <x-jet-confirmation-modal wire:model="confirmingDelete">
+<div>
+    <x-jet-danger-button wire:click="$set('confirmingDelete', true)">Destroy</x-jet-danger-button>
+    <x-jet-confirmation-modal wire:key="{{ $tenantId }}" wire:model="confirmingDelete">
         <x-slot name="title">
-            {{ __('Delete Role') }}
+            {{ __('Delete Brand') }}
         </x-slot>
 
         <x-slot name="content">
-            {{ __('Are you sure you want to delete this role?') }}
+            {{ __('Are you sure you want to delete this brand?') }}
         </x-slot>
 
         <x-slot name="footer">

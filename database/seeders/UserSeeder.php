@@ -17,13 +17,13 @@ class UserSeeder extends Seeder
 
         $writer = User::factory()->create(['email' => 'writer@devsquad.com']);
 
-        User::factory()->count(30)->create();
-
         Tenant::all()->each(function ($tenant) use ($superAdmin, $admin, $writer) {
             app(PermissionRegistrar::class)->setPermissionsTeamId($tenant->id);
 
             $superAdmin->assignRole('Super Admin');
+
             $admin->assignRole('Admin');
+
             $writer->assignRole('Writer');
         });
     }

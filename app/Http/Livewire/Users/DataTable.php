@@ -3,21 +3,20 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class DataTable extends LivewireDatatable
 {
-    protected $listeners = [
-        'roleSynced' => '$refresh',
-    ];
+    protected $listeners = ['roleSynced' => '$refresh'];
 
     public $hideable = 'select';
 
     public $exportable = true;
 
-    public function builder()
+    public function builder(): Builder
     {
         return User::query()->with('roles');
     }

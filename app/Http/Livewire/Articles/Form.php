@@ -39,5 +39,4 @@ class Form extends Component
 
         $this->redirectRoute('articles.index');
     }
-
 }
