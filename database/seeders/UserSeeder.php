@@ -9,29 +9,22 @@ use Spatie\Permission\PermissionRegistrar;
 
 class UserSeeder extends Seeder
 {
-    public $superAdmin;
-
-    public $admin;
-
-    public $writer;
-
     public function run()
     {
+        $superAdmin = User::factory()->create(['email' => 'super-admin@devsquad.com']);
 
-        $this->superAdmin = User::factory()->create(['email' => 'super-admin@devsquad.com']);
+        $admin = User::factory()->create(['email' => 'team@devsquad.com']);
 
-        $this->admin = User::factory()->create(['email' => 'team@devsquad.com']);
+        $writer = User::factory()->create(['email' => 'writer@devsquad.com']);
 
-        $this->writer = User::factory()->create(['email' => 'writer@devsquad.com']);
+        User::factory()->count(30)->create();
 
-        User::factory()->count(100)->create();
-
-        Tenant::all()->each(function ($tenant) {
+        Tenant::all()->each(function ($tenant) use ($superAdmin, $admin, $writer) {
             app(PermissionRegistrar::class)->setPermissionsTeamId($tenant->id);
 
-            $this->superAdmin->assignRole('Super Admin');
-            $this->admin->assignRole('Admin');
-            $this->writer->assignRole('Writer');
+            $superAdmin->assignRole('Super Admin');
+            $admin->assignRole('Admin');
+            $writer->assignRole('Writer');
         });
     }
 }

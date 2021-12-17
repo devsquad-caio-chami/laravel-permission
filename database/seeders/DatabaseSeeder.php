@@ -25,11 +25,11 @@ class DatabaseSeeder extends Seeder
     public function runLandlordSpecificSeeders()
     {
         $this->call([
+            OrganizationSeeder::class,
             TenantSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
         ]);
     }
-
 }

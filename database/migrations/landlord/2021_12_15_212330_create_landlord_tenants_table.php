@@ -10,6 +10,10 @@ class CreateLandlordTenantsTable extends Migration
     {
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('organization_id')
+                ->nullable()
+                ->constrained('organizations')
+                ->setNullOnDelete();
             $table->string('name');
             $table->string('domain')->unique();
             $table->string('database')->unique();
