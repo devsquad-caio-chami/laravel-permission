@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Organization;
 use App\Services\TenantService;
 use Illuminate\Console\Command;
 
@@ -40,8 +41,14 @@ class CreateTenant extends Command
     {
         $name = $this->ask('Enter the tenant name');
 
+        $organizations = Organization::all();
+
+        $organization = $this->choice('Select organization', $organizations->pluck('name')->all());
+
+        $organization = $organizations->firstWhere('name', $organization);
+
         try {
-            $this->service->create($name);
+            $this->service->create($name, $organization->id);
 
             $this->info('Tenant created successfully');
         } catch (\Exception $e) {
