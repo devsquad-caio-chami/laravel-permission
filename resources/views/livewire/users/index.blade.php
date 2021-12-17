@@ -50,27 +50,17 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                @php
-                                                    $brands = DB::table('landlord.model_has_roles')
-                                                        ->selectRaw('tenants.name, group_concat(roles.name) as roles')
-                                                        ->join('landlord.tenants', 'team_id', '=', 'landlord.tenants.id')
-                                                        ->join('landlord.roles', 'role_id', '=', 'landlord.roles.id')
-                                                        ->where('model_id', '=', $user->id)
-                                                        ->groupBy('model_has_roles.team_id')
-                                                        ->get()
-                                                @endphp
-                                                @foreach($brands as $brand)
+                                                @foreach($user->allRolesFromAllTeams()->get() as $team)
                                                     <div class="inline-flex mr-2" x-data="{ tooltip: false }" x-on:mouseenter="tooltip = true" x-on:mouseleave="tooltip = false">
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800" >
-                                                            {{ ucfirst($brand->name) }}
+                                                            {{ ucfirst($team->name) }}
                                                         </span>
                                                         <div x-show="tooltip" class="z-50 absolute bg-gray-50 border-graphite border-2 rounded p-2 mt-1">
-                                                            @foreach(explode(',', $brand->roles) as $role)
+                                                            @foreach(explode(',', $team->roles) as $role)
                                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                                {{ $role }}
-                                                            </span>
+                                                                    {{ $role }}
+                                                                </span>
                                                             @endforeach
-
                                                         </div>
                                                     </div>
                                                 @endforeach
