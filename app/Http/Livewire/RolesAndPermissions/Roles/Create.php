@@ -12,7 +12,7 @@ class Create extends Component
     public string $name = '';
 
     protected $rules = [
-        'name' => 'required|string|unique:roles',
+        'name' => 'required|string|unique:landlord.roles',
     ];
 
     public function save()

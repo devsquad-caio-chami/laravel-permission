@@ -17,7 +17,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.sections.index', [
-            'sections' => Section::paginate(10),
+            'sections' => Section::with('user')->paginate(10),
         ]);
     }
 

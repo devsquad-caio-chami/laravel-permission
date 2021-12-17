@@ -3,16 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
-
-    Route::get('teste', function () {
-        return Auth::user()->getRoleNames();
-    });
 
     Route::prefix('sections')->name('sections.')->group(function () {
         Route::middleware(['can:read sections'])->get('/', Livewire\Sections\Index::class)->name('index');
@@ -27,6 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::middleware('role:Super Admin')->group(function () {
+        Route::get('brands', Livewire\Tenants\Index::class)->name('brands.index');
         Route::get('users', Livewire\Users\Index::class)->name('users.index');
         Route::get('roles-and-permissions', Livewire\RolesAndPermissions\Index::class)
             ->name('roles-and-permissions.index');

@@ -14,16 +14,10 @@ class OrganizationSeeder extends Seeder
      */
     public function run()
     {
-        Organization::create([
-            'name' => 'Luminskin'
-        ]);
+        Organization::create(['name' => 'Luminskin']);
 
-        Organization::create([
-            'name' => 'Glamnetic'
-        ]);
+        Organization::create(['name' => 'Glamnetic']);
 
-        Organization::create([
-            'name' => 'Pangaea'
-        ]);
+        Organization::create(['name' => 'Pangaea']);
     }
 }
