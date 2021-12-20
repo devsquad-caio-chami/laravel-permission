@@ -8,6 +8,8 @@ Route::view('/', 'welcome');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
+    Route::get('events', Livewire\Events\Index::class)->name('events.index');
+
     Route::prefix('sections')->name('sections.')->group(function () {
         Route::middleware(['can:read sections'])->get('/', Livewire\Sections\Index::class)->name('index');
         Route::middleware(['can:create sections'])->get('create', Livewire\Sections\Form::class)->name('create');

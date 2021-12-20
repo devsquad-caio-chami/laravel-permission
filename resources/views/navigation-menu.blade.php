@@ -21,6 +21,10 @@
                         </x-jet-nav-link>
                     @endcan
 
+                    {{-- <x-jet-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.*')">
+                        {{ __('Events') }}
+                    </x-jet-nav-link> --}}
+
                     @can('read sections')
                         <x-jet-nav-link href="{{ route('sections.index') }}" :active="request()->routeIs('sections.*')">
                             {{ __('Sections') }}
@@ -192,6 +196,41 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+            {{-- <x-jet-responsive-nav-link href="{{ route('events.index') }}"
+                :active="request()->routeIs('events.index')">
+                {{ __('Events') }}
+            </x-jet-responsive-nav-link> --}}
+
+            @can('read articles')
+                <x-jet-responsive-nav-link href="{{ route('articles.index') }}"
+                    :active="request()->routeIs('articles.index')">
+                    {{ __('Articles') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @can('read sections')
+                <x-jet-responsive-nav-link href="{{ route('sections.index') }}"
+                    :active="request()->routeIs('sections.index')">
+                    {{ __('Sections') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @role('Super Admin')
+                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                    {{ __('Users') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('roles-and-permissions.index') }}"
+                    :active="request()->routeIs('roles-and-permissions.index')">
+                    {{ __('Events') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('brands.index') }}"
+                    :active="request()->routeIs('brands.index')">
+                    {{ __('Brands') }}
+                </x-jet-responsive-nav-link>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->

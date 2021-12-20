@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Jobs\SeedTenantDatabase;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Spatie\Multitenancy\Models\Tenant as ModelsTenant;
 

@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Organization;
+use App\Models\User;
 use App\Services\TenantService;
 use Illuminate\Console\Command;
+use Spatie\Permission\PermissionRegistrar;
 
 class CreateTenant extends Command
 {
